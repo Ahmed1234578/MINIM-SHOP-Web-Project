@@ -1,0 +1,1 @@
+# MINIM-SHOP-Web-Project
