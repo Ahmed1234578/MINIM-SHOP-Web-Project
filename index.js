@@ -8,7 +8,7 @@ const connectLive = require('connect-livereload');
 const User = require('./models/mydataSchema'); // Ensure this import is present
 
 const app = express();
-const port = 8080;
+const port = process.env.port || 8080;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
