@@ -1,0 +1,102 @@
+#im {
+    width: 17%;
+    margin-left: 7%;
+    margin-bottom: -4%;
+    display: inline;
+    margin-right: 0%;
+}
+#logo2 {
+    margin-left: 6.5%;
+    margin-top: -2%;
+}
+h2 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-left: 9%;
+    margin-top: 20px;
+}
+#totalPrice {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-left: 2.5%;
+    margin-top: 20px;
+}
+#fg {
+    border-top: 2px solid black;
+    margin-left:2.5% ;
+    margin-right: 2.5%;
+}
+#fg2 {
+    border-top: 2px solid black;
+    margin-left:2.5% ;
+    margin-right: 2.5%;
+    margin-top: 5%;
+}
+#ti {
+    display: inline;
+    margin-left: 0%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   
+    
+    margin-top: 200px;
+
+    
+    
+}
+#in1 {
+    display: inline;
+    width: 45%;
+   
+}
+#in2 {
+    display: inline;
+    width: 45%;
+    
+}
+#gen {
+    display: flex;
+}
+#space {
+    height: 35%;
+    width: 20%;
+    
+}
+table {
+    border-collapse: collapse;
+    width: 95%;
+    margin-left: 2.5%;
+    margin-right: 2.5;
+  }
+  
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid black;
+   
+  }
+  #nextB{
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
+    padding: 7.5px 16px;
+    margin-left: 4%;
+    margin-top: 3%;
+  }
+  #BackB2{
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
+    padding: 7.5px 16px;
+    margin-left: 45%;
+    margin-top: 3%;
+  }
+
+#d1 {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: aqua;
+}

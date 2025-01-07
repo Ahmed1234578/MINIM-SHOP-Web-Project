@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Purchase Summary</title>
+    <link rel="stylesheet" href="/css/summaryCSS.css">
+    <script src="/javascript/summaryJS.js"></script>
+</head>
+<body>
+   
+    <div id="gen">
+    <div id="in1">
+    <img src="/images/logo.jpg" alt="Shop logo" id="im">
+    <h2 id="logo">MINIM</h2>
+    <p id="logo2">Electronic Devices</p>
+    
+</div>
+
+<div id="in2">
+    <div id="space"></div>
+    <h2 id="ti">Purchase Summary</h2>
+    </div>
+    </div>
+    <hr id="fg">
+    <table id="summaryTable" >
+        <thead>
+            <tr >
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Count</th>
+                <th>Total Price</th>
+            </tr>
+        </thead>
+        <tbody>
+           
+        </tbody>
+    </table>
+    <hr id="fg2">
+    <h2 id="totalPrice">Total Price: 0 EGP</h2>
+   
+    <button id="BackB2" onclick="Back2()">Cancel</button>
+    <button id="nextB" onclick="BuyFun()">Buy</button>
+    <script>
+        // summary.js
+document.addEventListener('DOMContentLoaded', () => {
+    const productData = JSON.parse(localStorage.getItem('productData')) || [];
+    const totalPrice = localStorage.getItem('totalPrice') || 0;
+    const tbody = document.querySelector('#summaryTable tbody');
+    const totalPriceElement = document.getElementById('totalPrice');
+
+    productData.forEach(product => {
+        if (product && product.count > 0) {
+            const row = document.createElement('tr');
+
+            const nameCell = document.createElement('td');
+            nameCell.textContent = product.name;
+            row.appendChild(nameCell);
+            const pricecell = document.createElement('td');
+            pricecell.textContent = product.price;
+            row.appendChild(pricecell);
+            const countCell = document.createElement('td');
+            countCell.textContent = product.count;
+            row.appendChild(countCell);
+
+            const totalPriceCell = document.createElement('td');
+            totalPriceCell.textContent = `${product.totalPrice} EGP`;
+            row.appendChild(totalPriceCell);
+
+            tbody.appendChild(row);
+        }
+    });
+
+    totalPriceElement.textContent = `Total Price: ${totalPrice} EGP`;
+});
+
+    </script>
+</body>
+</html>

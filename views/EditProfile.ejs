@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Profile</title>
+    <link rel="stylesheet" href="/css/EditProfileCSS.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/javascript/EditProfileJS.js"></script>
+</head>
+<body>
+    <form method="post">
+    <div class="gen">
+    <div class="left">
+    <img src="/images/profilepic.png" alt="admin image">
+    <h1 id="logo">MINIM</h1>
+    <p>Electronic Devices</p>
+    </div>
+
+    <div class="right">
+        <h1 id="re">Edit Profile</h1>
+        <div class="gen2">
+        <div class="p1">
+        <h2 id="FNH">First Name</h2>
+        <input type="text" name="FirstName" id="FNI" value="Ahmed" disabled required>
+        <h2 id="LNH">Last Name</h2>
+        <input type="text" name="LastName" id="LNI" value="Mohamed" disabled required>
+        <h2 id="EH">Email</h2>
+        <input type="email" name="Email" id="EI" value="ahmed.admin@gmail.com" placeholder="ahmed@gmail.com" required>
+        <p id="EV"></p>
+        </div>
+        <div class="p2">
+        <h2 id="PH">Password</h2>
+        <input type="password" name="Password" id="PI" value="Arsk5678###" placeholder="Enter your Password" required>
+        
+        <p id="PV"></p>
+        <p id="PV1"></p>
+        <p id="PV2"></p>
+        <p id="PV3"></p>
+        
+        <h2 id="PNH">Phone Number</h2>
+        <input type="text" name="PhoneNumber" id="PNI" value="01123456789" placeholder="01123456789" required>
+        <p id="PNV"></p>
+        <h2 id="AH">Address</h2>
+        <input type="text" name="Address" id="AI" value="Al-Ahly Street, Cairo" placeholder="Al-Ahly Street, Cairo" required>
+        <p id="AV"></p>
+        </div>
+        
+        </div>
+        <div class="BD">
+            
+        <button type="submit" class="EB" name="EditB">Edit</button>
+        <button type="button" onclick='CanFun()' class="CB" name="CancelB">Cancel</button>
+        </div>
+        </div>
+    </div>
+    </div>
+    </form>
+</body>
+</html>

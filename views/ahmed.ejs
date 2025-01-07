@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login</title>
+        <link rel="stylesheet" href="/css/LoginCSS.css">
+        <script src="/javascript/LoginJS.js"></script>
+        <title> <%= mytitle %> </title>
+    </head>
+    <body>
+        <form method="post"  action="/">
+        <div class="gen">
+<div class="left">
+<img src="/images/logo.jpg" alt="Shop logo">
+<h1 id="logo">MINIM</h1>
+<p>Electronic Devices</p>
+<label id="SUL"><spam id="NU">New user? </spam><a href="/views/RegisterationForm.ejs">Register now</a></label>
+</div>
+
+    <div class="right">
+        <h1 id="lo">Login</h1>
+        <h2 id="EmH">Email</h2>
+        <input type="text" name="Email" id= "EmI" placeholder="Enter your Email" required>
+        <p id="EV"></p>
+        <h1>Your email is: <%= arr[0].Email %></h1>
+        <p id="PV"></p>
+        <p id="PV1"></p>
+        <p id="PV2"></p>
+        <p id="PV3"></p>
+        <div class="BD">
+            <button type="submit" onclick='loginFun()' class="LB"  >Login</button>
+            <button type="button" onclick="CanFun()" class="CB" name="CancelB" >Cancel</button>
+            </div>
+   
+    </div>
+        </div>
+        </form>
+    </body>
+</html>

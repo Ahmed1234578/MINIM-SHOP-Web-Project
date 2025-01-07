@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add a Device</title>
+    <link rel="stylesheet" href="/css/AddDeviceCSS.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/javascript/AddDeviceJS.js"></script>
+</head>
+<body>
+    <form id="addForm" method="post" action="/admin/AdminPage" enctype="multipart/form-data">
+        <div class="gen">
+            <div class="left">
+                <img src="/images/logo.jpg" alt="profile Picture">
+                <h1 id="logo">MINIM</h1>
+                <p>Electronic Devices</p>
+            </div>
+            <div class="right">
+                <h1 id="re">Add a Device</h1>
+                <div class="gen2">
+                    <div class="p1">
+                        <h2 id="NH">Name</h2>
+                        <input type="text" name="Name" id="NI" placeholder="Lenovo IdeaPad" required>
+                        <p id="NV" style="color:red;"></p>
+                        <h2 id="PH">Price (in EGP)</h2>
+                        <input type="number" name="Price" id="PI" placeholder="15000" required step="0.01">
+                        <p id="PV" style="color:red;"></p>
+                        <h2 id="HDDH">Description</h2>
+                        <input type="tel" name="Description" id="HDDI" placeholder="Write your device description" required>
+                        <p id="HV" style="color:red;"></p>
+                    </div>
+                    <div class="p2">
+                        <h2 id="RAMH">RAM (in GB)</h2>
+                        <input type="number" name="RAM" id="RAMI" placeholder="8" required>
+                        <p id="RV" style="color:red;"></p>
+                        <h2 id="SPH">Screen space (in Inch)</h2>
+                        <input type="number" name="ScreenSpace" id="SPI" placeholder="15.6" required step="0.01">
+                        <p id="SPV" style="color:red;"></p>
+                        <h2 id="PhH">Photo</h2>
+                        <input type="file" name="image" id="PhI" required>
+                        <p id="PHV" style="color:red;"></p>
+                    </div>
+                </div>
+                <div class="BD">
+                    <button type="submit" id="submitButton">Add</button>
+                    <button type="button" id="cancelButton" class="CB">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

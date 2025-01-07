@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Order Details</title>
+    <script src="/javascript/OrderDetailsJS.js"></script>
+<style>
+    #d1 {
+    display: block;
+  
+   font-weight:initial;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-left: 2.5%;
+  
+    
+}
+    #im {
+    width: 17%;
+    margin-left: 7%;
+    margin-bottom: -4%;
+    display: inline;
+    margin-right: 0%;
+}
+#logo2 {
+    margin-left: 6.5%;
+    margin-top: -2%;
+}
+h2 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-left: 9%;
+    margin-top: 20px;
+}
+#totalPrice {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-left: 2.5%;
+    margin-top: 20px;
+}
+#fg {
+    border-top: 2px solid black;
+    margin-left:2.5% ;
+    margin-right: 2.5%;
+}
+#fg2 {
+    border-top: 2px solid black;
+    margin-left:2.5% ;
+    margin-right: 2.5%;
+    margin-top: 5%;
+}
+#ti {
+    display: inline;
+    margin-left: 0%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   
+    
+    margin-top: 200px;
+
+    
+    
+}
+#in1 {
+    display: inline;
+    width: 45%;
+   
+}
+#in2 {
+    display: inline;
+    width: 45%;
+    
+}
+#gen {
+    display: flex;
+}
+#space {
+    height: 35%;
+    width: 20%;
+    
+}
+table {
+    border-collapse: collapse;
+    width: 95%;
+    margin-left: 2.5%;
+    margin-right: 2.5;
+    margin-top: 2%;
+  }
+  
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid black;
+   
+  }
+  #BackB2{
+    background-color: black; 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 45%;
+    margin-top: 1%;
+  }
+  #currentDateTime, #d1{
+    display: inline;
+  }
+</style>
+</head>
+<body>
+    <div id="gen">
+        <div id="in1">
+            <img src="/images/logo.jpg" alt="Shop logo" id="im">
+            <h2 id="logo">MINIM</h2>
+            <p id="logo2">Electronic Devices</p>
+        </div>
+        <div id="in2">
+            <div id="space"></div>
+            <h2 id="ti">Order Details</h2>
+        </div>
+    </div>
+    <hr id="fg">
+    <label id="d1">Order date: </label>
+    <label id="currentDateTime"><%= new Date(order.orderDate).toLocaleString() %></label>
+    <table id="summaryTable">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Count</th>
+                <th>Total Price</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <% order.orderItems.forEach(item => { %>
+                <% if (item) { %>
+                    <tr>
+                        <td><%= item.name %></td>
+                        <td><%= item.price %></td>
+                        <td><%= item.count %></td>
+                        <td><%= item.totalPrice %></td>
+                    </tr>
+                <% } %>
+            <% }); %>
+        </tbody>
+    </table>
+    <hr id="fg2">
+    <h2 id="totalPrice">Total Price: <%= order.totalPrice %> EGP</h2>
+    <button id="BackB2" onclick="Back2()">Back</button>
+</body>
+</html>

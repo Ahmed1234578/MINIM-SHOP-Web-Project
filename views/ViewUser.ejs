@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>User Information</title>
+        <link rel="stylesheet" href="/css/ViewUserCSS.css">
+        <script src="/javascript/ViewUserJS.js"></script>
+    </head>
+    <body>
+        <div class="gen">
+<div class="left">
+<img src="/user/user-images/<%= arr._id %>" alt="User photo">
+<h2 id="logo"><%= arr.FullName %></h2>
+
+</div>
+
+    <div class="right">
+        <button type="button" onclick="BackFun()" class="BB" name="BackB">Back</button>
+        <button type="button" onclick="EditFun()" class="EB" name="EditB">Edit</button>
+        <h1 id="re">User Information</h1>
+        <div class="gen2">
+        <div class="p1">
+            <br>
+        <br>
+        <h2 id="FNH">Full Name</h2>
+        <label><%= arr.FullName %></label>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h2 id="LNH">Password</h2>
+        <label><%= arr.Password %></label>
+        <br>
+        <br>
+        <br>
+        <br>
+        </div>
+        <div class="p2">
+            <br>
+        <br>
+        <h2 id="PH">Email</h2>
+        <label><%= arr.Email %></label>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h2 id="PH">Address</h2>
+        <label><%= arr.Address %></label>
+        <br>
+        <br>
+        
+        </div>
+        </div>
+    </div>
+        </div>
+        <script>
+    function  EditFun(){
+    location.replace("/admin/EditUser/<%= arr._id %>")
+  }
+        </script>
+    </body>
+</html>

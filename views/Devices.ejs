@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devices</title>
+    <link rel="stylesheet" href="/css/Devices.css">
+    <script src="/javascript/DevicesJS.js"></script>
+</head>
+<body>
+    <div id="tit">
+        <button type="button" id="CanB" onclick="canFun()">Cancel</button>   
+        <h1 id="title">Devices</h1>
+        <button type="button" id="BuyB" onclick="BuyFun()">Buy</button>
+    </div>
+    <div class="he">
+        <div id="de">
+            <input type="search" id="s" placeholder="Search..." oninput="filterProducts()">
+            <img id="si" src="/images/icons8-search-50.png" alt="Search icon." onclick="searchProducts()">
+        </div>
+        <div id="gen1">
+            <% arr.forEach(element => { %>
+                <div class="product" data-name="<%= element.Name.toLowerCase() %>">
+                    <img class="product-image" src="/user/device-images/<%= element._id %>" alt="<%= element.Name %>">
+                    <h2 id="pro-name" onclick="location.href='/user/Device/<%= element._id %>';"><%= element.Name %></h2>
+                    <h2 class="price"><%= element.Price + " EGP" %></h2>
+                    <h2 class="RAM"><%= element.RAM + "GB RAM" %></h2>
+                    <h2 class="quantity">Available: <%= element.Quantity %></h2>
+                    <h2 class="Screen_space"><%= element.ScreenSpace + " Inch" %></h2>
+                    <button type="button" class="add-button" id="Add">Add to Cart</button>
+                    <p class="info"></p>
+                    <a href="#" class="remove" style="display: none;">Remove</a>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+    <script>
+        function filterProducts() {
+            const searchInput = document.getElementById('s').value.toLowerCase();
+            const products = document.querySelectorAll('.product');
+            
+            products.forEach(product => {
+                const productName = product.getAttribute('data-name');
+                if (productName.includes(searchInput)) {
+                    product.style.display = '';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        }
+
+        function searchProducts() {
+            const searchInput = document.getElementById('s').value.toLowerCase();
+            const productRows = document.querySelectorAll('.product');
+            
+            let found = false;
+            
+            productRows.forEach(row => {
+                const productName = row.getAttribute('data-name');
+                if(searchInput!=""){
+                if (productName === searchInput) { 
+                    row.style.display = '';
+                    found = true;
+                } else {
+                    row.style.display = 'none';
+                }
+            }
+            });
+            
+            
+        }
+
+        document.getElementById('si').addEventListener('click', searchProducts);
+
+        let totalPrice = 0;  
+        const productData = []; 
+
+        document.querySelectorAll('.product').forEach((div, index) => {
+            const button = div.querySelector('.add-button');
+            const paragraph = div.querySelector('.info');
+            const removeLink = div.querySelector('.remove');
+            const priceElement = div.querySelector('.price');
+            const nameElement = div.querySelector('#pro-name');
+            const productId = div.getAttribute('data-id');
+            const price = parseFloat(priceElement.textContent);  
+            const name = nameElement.textContent;  
+        
+            let count = 0;
+
+            button.addEventListener('click', () => {
+                count++;
+                totalPrice += price;
+                paragraph.innerText = `${count} in cart - ${count * price} EGP`;
+                paragraph.style.display = 'inline';  
+                removeLink.style.display = 'inline';
+
+                productData[index] = {
+                    name: name,
+                    price: price,
+                    count: count,
+                    totalPrice: count * price
+                };
+            });
+
+            removeLink.addEventListener('click', (event) => {
+                event.preventDefault();
+                totalPrice -= count * price;
+                count = 0;
+                paragraph.innerText = '';
+                paragraph.style.display = 'none';  
+                removeLink.style.display = 'none';
+
+                productData[index] = {
+                    name: name,
+                    price: price,
+                    count: count,
+                    totalPrice: 0
+                };
+            });
+        });
+
+        document.getElementById('BuyB').addEventListener('click', () => {
+            localStorage.setItem('productData', JSON.stringify(productData));
+            localStorage.setItem('totalPrice', totalPrice);
+
+            if (totalPrice === 0) {
+                alert("Your cart is empty!");
+            } else {
+                window.location.href = '/user/summary';
+            }
+        });
+    </script>
+</body>
+</html>

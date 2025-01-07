@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Details</title>
+    <link rel="stylesheet" href="/css/BuyCSS.css">
+    <!-- Include jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="/images/logo.jpg" alt="Shop Logo">
+            <h2 id="logo1">MINIM</h2>
+            <p id="logo2">Electronic Devices</p>
+        </div>
+        <form id="paymentForm" method="post" action="/user/UserPage">
+            <label id="d1">Order date: </label>
+            <label id="currentDateTime"></label>
+            <label id="totalPrice0">Total Price</label>
+            <input type="text" id="totalPrice" name="totalPrice" readonly>
+            <h2 id="c">Contact Information</h2>
+        
+            <label for="fullName">Full Name</label>
+            <p id="fullName"> <%= user.FullName %></p>
+        
+            <label for="email">Email Address</label>
+            <p id="email"><%= user.Email %></p>
+        
+            <label for="address">Address</label>
+            <p  id="address"><%= user.Address %></p>
+        
+            <h2>Payment Information</h2>
+            <label for="cardNumber">Card Number</label>
+            <input type="number" id="cardNumber" name="cardNumber" required>
+            <p id="CRV"></p>
+            <label for="expirationDate">Expiration Date (MM/YY)</label>
+            <input type="text" id="expirationDate" name="expirationDate" required>
+            <p id="EDV"></p>
+            <label for="cvv">CVV</label>
+            <input type="text" id="cvv" name="cvv" required>
+            <p id="CVVV"></p>
+            <label for="cardName">Cardholder Name</label>
+            <input type="text" id="cardName" name="cardName" required>
+            <p id="CNVV"></p>
+        
+            <!-- Hidden inputs for orderItems and totalPrice -->
+            <input type="hidden" id="orderItems" name="orderItems">
+            <input type="hidden" id="hiddenDateTime" name="orderDate">
+            <input type="hidden" id="userId" name="userId" value="<%= user._id %>">
+        
+            <div class="buttons">
+                <button type="submit" class="submit">Pay now</button>
+                <button type="button" class="cancel" onclick="cancelPayment()">Cancel</button>
+            </div>
+        </form>
+        
+        <script>
+            $(document).ready(function() {
+                // Retrieve product data from local storage
+                const productData = JSON.parse(localStorage.getItem('productData')) || [];
+                const totalPrice = localStorage.getItem('totalPrice') || 0;
+        
+                // Set the product data and total price in the form
+                $('#orderItems').val(JSON.stringify(productData));
+                $('#totalPrice').val(totalPrice); // Store only the numeric value
+        
+              
+        
+                // Set the current date and time in the form
+                const currentDateTimeLabel = $('#currentDateTime');
+                const currentDateTime = new Date();
+                currentDateTimeLabel.text(currentDateTime.toLocaleString());
+                $('#hiddenDateTime').val(currentDateTime.toISOString());
+        
+                // Real-time validation
+                $('#cardNumber').on('input', function() {
+                    if ($(this).val().length !== 16) {
+                        $('#CRV').text("Invalid card number.");
+                        $(this).css({"background-color": "#ffe6e6", "border-color": "red"});
+                    } else {
+                        $('#CRV').text("");
+                        $(this).css({"background-color": "white", "border-color": "black"});
+                    }
+                });
+        
+                $('#expirationDate').on('input', function() {
+                    const expDatePattern = /^(0[1-9]|1[0-2])\/\d{2}$/;
+                    if (!expDatePattern.test($(this).val())) {
+                        $('#EDV').text("Invalid expiration date format.");
+                        $(this).css({"background-color": "#ffe6e6", "border-color": "red"});
+                    } else {
+                        $('#EDV').text("");
+                        $(this).css({"background-color": "white", "border-color": "black"});
+                    }
+                });
+        
+                $('#cvv').on('input', function() {
+                    if ($(this).val().length !== 3) {
+                        $('#CVVV').text("Invalid CVV.");
+                        $(this).css({"background-color": "#ffe6e6", "border-color": "red"});
+                    } else {
+                        $('#CVVV').text("");
+                        $(this).css({"background-color": "white", "border-color": "black"});
+                    }
+                });
+        
+                $('#cardName').on('input', function() {
+                    if ($(this).val().trim() === "") {
+                        $('#CNVV').text("Cardholder name is required.");
+                        $(this).css({"background-color": "#ffe6e6", "border-color": "red"});
+                    } else {
+                        $('#CNVV').text("");
+                        $(this).css({"background-color": "white", "border-color": "black"});
+                    }
+                });
+        
+                // Form submission with AJAX
+                $('#paymentForm').submit(function(event) {
+                    event.preventDefault(); // Prevent default form submission
+        
+                    // If form is valid, send AJAX request
+                    const formData = $(this).serialize();
+        
+                    $.ajax({
+                        type: 'POST',
+                        url: '/user/UserPage', 
+                        data: formData,
+                        success: function(response) {
+                            alert('Payment successful!');
+                            location.replace("/user/UserPage")
+                           
+                        },
+                        error: function(error) {
+                            console.error('Error:', error);
+                            alert('Payment failed. Please try again.');
+                        }
+                    });
+                });
+            });
+        
+            function cancelPayment() {
+                location.replace("/user/Devices")
+            }
+        </script>
+        
+</body>
+</html>

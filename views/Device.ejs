@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Device Details</title>
+    <link rel="stylesheet" href="/css/DeviceCSS.css">
+    
+</head>
+<body>
+    <div id="tit">
+        <button type="button" id="CanB"  onclick="location.href='/user/Devices';">Back</button>   
+        <h1 id="title">Device Details</h1>
+    </div>
+<div id="gen">
+    <div id="im">
+        <img id="image" src="/user/device-images/<%= arr._id %>" alt="Image from MongoDB">
+    </div>
+
+    <div id="gen1">
+        <div class="p1">
+            <br>
+        <br>
+        <h2 id="FNH">Name</h2>
+        <label><%=arr.Name%></label>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h2 id="LNH">Price (in EGP)</h2>
+        <label><%=arr.Price%></label>
+        
+        </div>
+        <div class="p2">
+            <br>
+        <br>
+        <h2 id="PH">RAM (in GB)</h2>
+        <label class="par2"><%=arr.RAM%></label>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h2 id="PH3">Screen space</h2>
+        <label class="par2"><%=arr.ScreenSpace %></label>
+       
+        
+        </div>
+        
+        
+     </div>
+        
+</div>
+<div id="des">
+    
+<h2 id="PH2">Description</h2>
+<p id="par"><%=arr.Description%></p>
+<br>
+<br>
+<br>
+<br>
+</div>
+
+
+</body>
+</html>

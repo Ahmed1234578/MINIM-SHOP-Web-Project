@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit a Device</title>
+    <link rel="stylesheet" href="/css/EditDeviceCSS.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/javascript/EditDeviceJS.js"></script>
+</head>
+<body>
+    <form id="editDeviceForm" method="post" action="/admin/EditDevice/<%=arr._id%>?_method=PUT" enctype="multipart/form-data">
+        <div class="gen">
+            <div class="left">
+                <img src="/images/logo.jpg" alt="profile Picture">
+                <h1 id="logo">MINIM</h1>
+                <p>Electronic Devices</p>
+            </div>
+            <div class="right">
+                <h1 id="re">Edit a Device</h1>
+                <div class="gen2">
+                    <div class="p1">
+                        <h2 id="NH">Name</h2>
+                        <input type="text" name="Name" id="NI" required value="<%= arr.Name %>" disabled>
+                        <p id="NV"></p>
+                        <h2 id="PH">Price (in EGP)</h2>
+                        <input type="number" name="Price" id="PI" placeholder="15000" required step="0.01" value="<%= arr.Price %>">
+                        <p id="PV"></p>
+                        <h2 id="HDDH">Description</h2>
+                        <input type="text" name="Description" id="HDDI" placeholder="Write your device description" required value="<%= arr.Description %>">
+                        <p id="HV"></p>
+                    </div>
+                    <div class="p2">
+                        <h2 id="RAMH">RAM (in GB)</h2>
+                        <input type="number" name="RAM" id="RAMI" placeholder="8" required value="<%= arr.RAM %>">
+                        <p id="RV"></p>
+                        <h2 id="SPH">Screen space (in Inch)</h2>
+                        <input type="number" name="ScreenSpace" id="SPI" placeholder="15.6" required step="0.01" value="<%= arr.ScreenSpace %>">
+                        <p id="SPV"></p>
+                        <h2 id="PhH">Photo</h2>
+                        <input type="file" name="image" id="PhI" required>
+                        <p id="PHV"></p>
+                    </div>
+                </div>
+                <div class="BD">
+                    <button type="submit" class="EB" id="AB">Edit</button>
+                    <button type="button" onclick="CanFun()" class="CB" name="CancelB">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

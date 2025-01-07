@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Profile</title>
+        <link rel="stylesheet" href="/css/UserProfileCSS.css">
+        <script src="/javascript/UserProfileJS.js"></script>
+    </head>
+    <body>
+        <div class="gen">
+<div class="left">
+<img src="/user/user-images/<%= user._id %>" alt="Shop logo">
+<h1 id="logo">MINIM</h1>
+<p>Electronic Devices</p>
+</div>
+
+    <div class="right">
+        <button type="button" onclick="BackFun()" class="BB" name="BackB">Back</button>
+        <button type="button" onclick="EditFun()" class="EB" name="EditB">Edit</button>
+        <h1 id="re">Profile</h1>
+        <div class="gen2">
+        <div class="p1">
+        <h2 id="FNH">Full Name</h2>
+        <label><%= user.FullName %></label>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h2 id="LNH">Email</h2>
+        <label><%= user.Email %></label>
+        <br>
+        <br>
+        
+        </div>
+        <div class="p2">
+        <h2 id="PH">Password</h2>
+        <label><%= user.Password %></label>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h2 id="PH">Address</h2>
+        <label><%= user.Address %></label>
+        <br>
+        <br>
+        <br>
+        <br>
+        </div>
+        </div>
+    </div>
+        </div>
+    </body>
+</html>
