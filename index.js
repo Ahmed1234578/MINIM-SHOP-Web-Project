@@ -5,7 +5,7 @@ const session = require('express-session');
 const methodOverride = require('method-override');
 const livereload = require('livereload');
 const connectLive = require('connect-livereload');
-const User = require('./models/mydataSchema'); // Ensure this import is present
+const User = require('./models/mydataSchema'); 
 
 const app = express();
 const port = process.env.port || 8080;
