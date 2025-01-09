@@ -271,12 +271,11 @@ const getUserProfilePage=(req, res) => {
     const { orderItems, totalPrice, orderDate } = req.body;
     const userId = req.session.userId;
   
-    // Parse orderItems JSON string to an array of objects
     const parsedOrderItems = JSON.parse(orderItems);
   
     const newOrder = new Order({
         orderItems: parsedOrderItems,
-        totalPrice: Number(totalPrice), // Ensure totalPrice is a number
+        totalPrice: Number(totalPrice), 
         orderDate,
         user: userId
     });
