@@ -79,19 +79,36 @@ const GetAllUsers=(req, res) => {
     })
   
    }
-const getManageDevicePage=async(req, res) => {
+   const getManageDevicePage = async (req, res) => {
     if (!req.session.userId) {
       return res.redirect('/user/LoginForm');
-  }
-    Device.find().then((result) => {
-      if(req.session.type==='admin'){
-   res.render('ManageDevices', {arr: result})
-      }else {
+    }
+  
+    const perPage = 4;
+    const page = req.query.page || 1;
+  
+    try {
+      const devices = await Device.find({})
+        .skip((perPage * page) - perPage)
+        .limit(perPage);
+  
+      const count = await Device.countDocuments();
+  
+      if (req.session.type === 'admin') {
+        res.render('ManageDevices', {
+          arr: devices,
+          current: page,
+          pages: Math.ceil(count / perPage)
+        });
+      } else {
         return res.redirect('/views/LoginForm');
       }
+    } catch (err) {
+      console.log(err);
+      res.status(500).send('Server Error');
+    }
+  };
   
-  })
-  }
   const getViewUserPage=(req, res) => {
     if (!req.session.userId) {
       return res.redirect('/user/LoginForm');
