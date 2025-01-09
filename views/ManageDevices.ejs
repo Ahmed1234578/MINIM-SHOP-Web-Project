@@ -5,44 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Devices</title>
     <link rel="stylesheet" href="/css/ManageDevicesCSS.css">
-   
 </head>
 <body>
     <div id="tit">
-        <button type="button" id="CanB"  onclick="location.href='/admin/AdminPage';" >Cancel</button>   
+        <button type="button" id="CanB" onclick="location.href='/admin/AdminPage';">Cancel</button>   
         <h1 id="title">Devices</h1>
-        
     </div>
     <div class="he">
         <div id="de">
-           
             <input type="search" id="s" placeholder="Search..." oninput="filterProducts()">
             <img id="si" src="/images/icons8-search-50.png" alt="Search icon." onclick="searchProducts()">
-          
         </div>
-    <div id="gen1">
-
-     
-        <% arr.forEach(element => { %>
-            <div class="product"  data-name="<%= element.Name.toLowerCase() %>">
-                <img class="product-image" src="/user/device-images/<%= element._id %>" alt="<%= element.Name %>">
-            <h2 id="pro-name" onclick="location.href='/admin/ViewDevice/<%= element._id %>';"><%= element.Name %> </h2>
-            <h2 class="price"><%= element.Price+" EGP" %></h2>
-            <h2 class="RAM"><%= element.RAM +"GB RAM"%></h2>
-            <h2 class="quantity">Available: <%= element.Quantity %></h2>
-            <h2 class="Screen_space"><%=element.ScreenSpace +" Inch" %></h2>
-            <button type="button" class="Edit-button" id="Edit" onclick="location.href='/admin/EditDevice/<%= element._id %>';" >Edit</button>
-            <form action="/admin/ManageDevices/<%=element._id%>?_method=DELETE" method="post" style="display: inline;">
-            <button type="submit" class="Delete-button" id="Delete" >Delete</button>
-            </form>
+        <div id="gen1">
+            <% arr.forEach(element => { %>
+                <div class="product" data-name="<%= element.Name.toLowerCase() %>">
+                    <img class="product-image" src="/user/device-images/<%= element._id %>" alt="<%= element.Name %>">
+                    <h2 id="pro-name" onclick="location.href='/admin/ViewDevice/<%= element._id %>';"><%= element.Name %></h2>
+                    <h2 class="price"><%= element.Price %> EGP</h2>
+                    <h2 class="RAM"><%= element.RAM %>GB RAM</h2>
+                    <h2 class="quantity">Available: <%= element.Quantity %></h2>
+                    <h2 class="Screen_space"><%= element.ScreenSpace %> Inch</h2>
+                    <button type="button" class="Edit-button" id="Edit" onclick="location.href='/admin/EditDevice/<%= element._id %>';">Edit</button>
+                    <form action="/admin/ManageDevices/<%= element._id %>?_method=DELETE" method="post" style="display: inline;">
+                        <button type="submit" class="Delete-button" id="Delete">Delete</button>
+                    </form>
+                </div>
+            <% }) %>
         </div>
-            
-        <% }) %>   
-
-        
+    </div>
+    <div id="p3">
+    <div id="paginat">
+        <% if (current > 1) { %>
+            <a href="/admin/ManageDevices?page=<%= current - 1 %>">Previous</a>
+        <% } %>
+        <% for (let i = 1; i <= pages; i++) { %>
+            <a href="/admin/ManageDevices?page=<%= i %>" class="<%= current == i ? 'active' : '' %>"><%= i %></a>
+        <% } %>
+        <% if (current < pages) { %>
+            <a href="/admin/ManageDevices?page=<%= ++current %>">Next</a>
+        <% } %>
+    </div>
     </div>
     <script>
-         function filterProducts() {
+        function filterProducts() {
             const searchInput = document.getElementById('s').value.toLowerCase();
             const products = document.querySelectorAll('.product');
             
@@ -55,29 +60,24 @@
                 }
             });
         }
+
         function searchProducts() {
             const searchInput = document.getElementById('s').value.toLowerCase();
             const productRows = document.querySelectorAll('.product');
             
-            let found = false;
-            
             productRows.forEach(row => {
                 const productName = row.getAttribute('data-name');
-                if(searchInput!=""){
-                if (productName === searchInput) { 
-                    row.style.display = '';
-                    found = true;
-                } else {
-                    row.style.display = 'none';
+                if (searchInput !== "") {
+                    if (productName === searchInput) { 
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
                 }
-            }
             });
-            
-            
         }
 
         document.getElementById('si').addEventListener('click', searchProducts);
-
     </script>
 </body>
 </html>
