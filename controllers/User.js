@@ -151,20 +151,36 @@ const getSummary=(req, res) => {
       res.status(500).send('Error updating user profile.');
     }
   }
-  const getDevicesPage=async(req, res) => {
+  const getDevicesPage = async (req, res) => {
     if (!req.session.userId) {
       return res.redirect('/user/LoginForm');
-      
     }
-       Device.find().then((result) => {
-     if(req.session.type==='client'){
-      res.render('Devices', {arr: result})
-     }else {
-      return res.redirect('/user/LoginForm');
-     }
-    
-    })
-   }
+
+    const perPage = 4;
+    const page = req.query.page || 1;
+
+    try {
+        const devices = await Device.find({})
+            .skip((perPage * page) - perPage)
+            .limit(perPage);
+
+        const count = await Device.countDocuments();
+
+        if(req.session.type==='client'){
+          res.render('Devices', {
+              arr: devices,
+              current: page,
+              pages: Math.ceil(count / perPage)
+          });
+        }else {
+          return res.redirect('/user/LoginForm');
+        }
+    } catch (err) {
+        console.log(err);
+        res.status(500).send('Server Error');
+    }
+};
+
 const getDevicePage=(req, res) => {
     if (!req.session.userId) {
       return res.redirect('/user/LoginForm');
