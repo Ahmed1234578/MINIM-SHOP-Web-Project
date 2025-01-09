@@ -34,6 +34,19 @@
             <% }) %>
         </div>
     </div>
+    <div id ="p3">
+    <div id="paginat">
+        <% if (current > 1) { %>
+            <a href="/user/Devices?page=<%= current - 1 %>">Previous</a>
+        <% } %>
+        <% for (let i = 1; i <= pages; i++) { %>
+            <a href="/user/Devices?page=<%= i %>" class="<%= current == i ? 'active' : '' %>"><%= i %></a>
+        <% } %>
+        <% if (current < pages) { %>
+            <a href="/user/Devices?page=<%= ++current %>">Next</a>
+        <% } %>
+    </div>
+</div>
     <script>
         function filterProducts() {
             const searchInput = document.getElementById('s').value.toLowerCase();
@@ -57,17 +70,15 @@
             
             productRows.forEach(row => {
                 const productName = row.getAttribute('data-name');
-                if(searchInput!=""){
-                if (productName === searchInput) { 
-                    row.style.display = '';
-                    found = true;
-                } else {
-                    row.style.display = 'none';
+                if (searchInput !== "") {
+                    if (productName === searchInput) { 
+                        row.style.display = '';
+                        found = true;
+                    } else {
+                        row.style.display = 'none';
+                    }
                 }
-            }
             });
-            
-            
         }
 
         document.getElementById('si').addEventListener('click', searchProducts);
