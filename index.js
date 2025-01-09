@@ -45,7 +45,7 @@ app.use('/user', userRoutes);
 
 
 app.get('/', (req, res) => {
-  res.render('Home');
+  res.render('index');
 });
 
 
