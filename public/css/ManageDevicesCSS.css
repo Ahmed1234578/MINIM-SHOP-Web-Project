@@ -150,3 +150,45 @@ h2 {
 
 
 }
+#paginat { 
+    display: flex; 
+    justify-content: center; 
+    margin-top: 20px; 
+} 
+#paginat a { 
+    margin: 0 5px; 
+    padding: 10px 20px; 
+    background-color: #333; 
+    color: white; 
+    text-decoration: none; 
+    border-radius: 5px; 
+    margin-top: 3%;
+} 
+#paginat a.active { 
+    background-color: #01F9C6;
+ }
+ #p3 {
+    margin-top: -2%;
+    background-color: #d6eaf8;
+ }
+ #paginat { 
+    display: flex; 
+    justify-content: center; 
+    margin-top: 20px; 
+} 
+#paginat a { 
+    margin: 0 5px; 
+    padding: 10px 20px; 
+    background-color: #333; 
+    color: white; 
+    text-decoration: none; 
+    border-radius: 5px; 
+    margin-top: 3%;
+} 
+#paginat a.active { 
+    background-color: #01F9C6;
+ }
+ #p3 {
+    margin-top: -2%;
+    background-color: #d6eaf8;
+ }
