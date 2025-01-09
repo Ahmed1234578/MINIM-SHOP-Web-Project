@@ -87,6 +87,7 @@ h1 {
     flex-wrap: wrap;
     justify-content: center;
     margin-top: -0.75%;
+    height: 100%;
 }
 
 h2 {
@@ -137,3 +138,24 @@ h2 {
     border-left: none;
     cursor: pointer;
 }
+#paginat { 
+    display: flex; 
+    justify-content: center; 
+    margin-top: 20px; 
+} 
+#paginat a { 
+    margin: 0 5px; 
+    padding: 10px 20px; 
+    background-color: #333; 
+    color: white; 
+    text-decoration: none; 
+    border-radius: 5px; 
+    margin-top: 3%;
+} 
+#paginat a.active { 
+    background-color: #01F9C6;
+ }
+ #p3 {
+    margin-top: -2%;
+    background-color: #d6eaf8;
+ }
